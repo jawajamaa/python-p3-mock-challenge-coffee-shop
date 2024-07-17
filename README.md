@@ -1,4 +1,4 @@
-# Mock Code Challenge - Coffee Shop (Object Relationships)
+<!-- # Mock Code Challenge - Coffee Shop (Object Relationships) -->
 
 For this assignment, we'll be working with a Coffee shop-style domain.
 
@@ -58,16 +58,6 @@ build out any helper methods if needed.
 
 ### Initializers and Properties
 
-#### Customer
-
-- `Customer __init__(self, name)`
-  - Customer is initialized with a name
-- `Customer property name`
-  - Returns customer's name
-  - Names must be of type `str`
-  - Names must be between 1 and 15 characters, inclusive
-  - Should **be able** to change after the customer is instantiated
-
 #### Coffee
 
 - `Coffee __init__(self, name)`
@@ -78,6 +68,17 @@ build out any helper methods if needed.
   - Names length must be greater or equal to 3 characters
   - Should **not be able** to change after the coffee is instantiated
   - _hint: `hasattr()`_
+
+#### Customer
+
+- `Customer __init__(self, name)`
+  - Customer is initialized with a name
+- `Customer property name`
+  - Returns customer's name
+  - Names must be of type `str`
+  - Names must be between 1 and 15 characters, inclusive
+  - Should **be able** to change after the customer is instantiated
+
 
 #### Order
 
@@ -93,15 +94,6 @@ build out any helper methods if needed.
 
 ### Object Relationship Methods and Properties
 
-#### Order
-
-- `Order property customer`
-  - Returns the customer object for that order
-  - Must be of type `Customer`
-- `Order property coffee`
-  - Returns the coffee object for that order
-  - Must be of type `Coffee`
-
 #### Coffee
 
 - `Coffee orders()`
@@ -111,6 +103,16 @@ build out any helper methods if needed.
   - Returns a **unique** list of all customers who have ordered a particular
     coffee.
   - Customers must be of type `Customer`
+  
+#### Order
+
+- `Order property customer`
+  - Returns the customer object for that order
+  - Must be of type `Customer`
+- `Order property coffee`
+  - Returns the coffee object for that order
+  - Must be of type `Coffee`
+
 
 #### Customer
 
