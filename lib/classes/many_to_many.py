@@ -73,11 +73,18 @@ class Customer:
         return [order for order in Order.all if order.customer == self]
     
     def coffees(self):
-        pass
+        return list(set([order.coffee for order in self.orders()]))
     
     def create_order(self, coffee, price):
-        pass
+        return Order(self, coffee, price)
     
+    def most_aficionado(self):
+        coffee_spending = dict()
+
+        for order in Order.all:
+            breakpoint()
+        # customer_total_spending = sum[order.price for order in self.orders()] 
+        # coffee_spending[]
 class Order:
     all = list()
 
@@ -91,12 +98,12 @@ class Order:
     def price(self):
         return self._price
     
-    def __repr__(self):
-        return f'{self.customer} ordered {self.coffee} for £{self.price}'
-
     @price.setter
     def price(self, price):
         if isinstance(price, float) and not hasattr(self, "price") and 1.0 <= price <= 10.0:
             self._price = price
         else:
             raise ValueError ("The coffee price must be a float (number with one decimal place in the tenths column) between 1.0 and 10.0")
+
+    def __repr__(self):
+        return f"{self.customer} ordered {self.coffee} for £{self.price}"
