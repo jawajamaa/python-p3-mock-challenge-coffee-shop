@@ -1,9 +1,7 @@
 class Coffee:
-    all = list()
 
     def __init__(self, name):
         self.name = name
-        type(self).all.append(self)
         
     @property
     def name(self):
@@ -29,21 +27,30 @@ class Coffee:
             if order.coffee == self and order.customer not in oneTypeCoffee:
                 oneTypeCoffee.append(order.customer)
         return oneTypeCoffee
-    # don't think one can return a unique list with comprehension?
+    # I don't think one can return a unique list with comprehension...
         # return set(list([order for order in type(self).orders(self) if order.coffee == self]))
     
     def num_orders(self):
-        coffeeOrders = dict()
-
-        for coffee in type(self).all:
-            # breakpoint()
-            coffeeOrders[f'{coffee}'] = coffeeOrders.get(f'{coffee}', 0) + 1
-        return coffeeOrders
+        return len(self.orders())
+     
+    #  my below solution takes the average of all drinks and not just the tested order, necessitating the creation and use of the truncate_float() function, and doesn't take a 0.0 order possibility (resulting in attempting to divide by 0)
+    # def average_price(self):
+    #     order_Prices = [order.price for order in Order.all]
+    #     total_all_prices = sum(order_Prices)/len(order_Prices)
+    #     def truncate_float(num, decimal_places):
+    #         multiplier = 10 ** decimal_places
+    #         return int(num * multiplier)/ multiplier
+    #     avg_price = truncate_float(total_all_prices, 1)
+    #     return avg_price
+    def average_price(self):
+        orders = self.orders()
+        if not orders:
+            return 0.0
+        total_price = sum(order.price for order in orders)
+        average = total_price / len(orders)
+        return round(average, 1)
 
     
-    def average_price(self):
-        pass
-
 class Customer:
     def __init__(self, name):
         self.name = name
@@ -60,10 +67,10 @@ class Customer:
             raise ValueError ("Customer name must be a string between 1 and 15 characters")
         
     def __repr__(self):
-        return f'Customer: {self.name}'
+        return f"Customer: {self.name}"
     
     def orders(self):
-        pass
+        return [order for order in Order.all if order.customer == self]
     
     def coffees(self):
         pass
