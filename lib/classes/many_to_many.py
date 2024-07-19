@@ -81,10 +81,12 @@ class Customer:
     def most_aficionado(self):
         coffee_spending = dict()
 
-        for order in Order.all:
-            breakpoint()
-        # customer_total_spending = sum[order.price for order in self.orders()] 
-        # coffee_spending[]
+        for order in self.orders():
+            coffee_spending[order.customer] = coffee_spending.get(order.customer, 0) + order.price
+        v = list(coffee_spending.values())
+        k = list(coffee_spending.keys())
+        return (k[v.index(max(v))])
+
 class Order:
     all = list()
 
